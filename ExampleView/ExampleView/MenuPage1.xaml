@@ -25,13 +25,21 @@
                         <Image Source="NotifIcon.png" HeightRequest="32" WidthRequest="35" Margin="5" ></Image>
 
                     </StackLayout>
+
+
                     <StackLayout Orientation="Vertical"  Padding="5,0,5,0" >
 
 
-                        <ListView x:Name="ListView1" SeparatorColor="Gray"   Margin="10" ItemSelected="ListView1_OnItemSelected">
+                        <ListView x:Name="ListView1" SeparatorColor="Gray"   Margin="10"  ItemSelected="LV1" >
                             <ListView.ItemTemplate >
                                 <DataTemplate>
-                                    <TextCell Text="{Binding .}" TextColor="White"  />
+                                    <ViewCell>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding Items}" TextColor="White"   VerticalTextAlignment="Center" />
+                                    <Label Text="{Binding status}" TextColor="White" HorizontalOptions="EndAndExpand" VerticalTextAlignment="Center" TranslationX="-15"  ></Label>
+                                        </StackLayout>
+                                    </ViewCell>
+
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                             

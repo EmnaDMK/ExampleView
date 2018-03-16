@@ -9,50 +9,49 @@ using Xamarin.Forms.Xaml;
 
 namespace ExampleView
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class MenuPage1 : MasterDetailPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class MenuPage1 : MasterDetailPage
     {
         public MenuPage1()
         {
+            ItemsViewModel IV;
             InitializeComponent();
-
-            ListView1.ItemsSource = new string[]
-            {
-                "My ACCOUNT",
-                "Shop",
-                "FAQ",
-                "NOTIFICATIONS"
-
-            };
-           
+            IV = new ItemsViewModel();
+            ListView1.ItemsSource = IV.ItemsView1;
         }
 
-
-        private void ListView1_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-           if (ListView1.SelectedItem.Equals("My ACCOUNT"))
+           private void LV1(object sender, SelectedItemChangedEventArgs e)
             {
-                Detail=new MyAccount();
-                IsPresented = false;
+                var Item = e.SelectedItem as ItemView;
+
+                if (Item.Items.Equals("My ACCOUNT"))
+                {
+
+                    Detail = new MyAccount();
+                    IsPresented = false;
+                }
+
+
+                else
+                   if (Item.Items.Equals("SHOP"))
+                {
+                    Detail = new ShopPage();
+                    IsPresented = false;
+                }
+                else
+                   if (Item.Items.Equals("FAQ"))
+                {
+                    Detail = new FAQPage();
+                    IsPresented = false;
+                }
+                else
+                   if (Item.Items.Equals("NOTIFICATIONS"))
+                {
+                    Detail = new NotificationsPage();
+                    IsPresented = false;
+                }
+
             }
-            else 
-               if (ListView1.SelectedItem.Equals("Shop"))
-               {
-                   Detail = new ShopPage();
-                   IsPresented = false;
-               }
-               else
-               if (ListView1.SelectedItem.Equals("FAQ"))
-               {
-                   Detail = new FAQPage();
-                   IsPresented = false;
-               }
-               else
-               if (ListView1.SelectedItem.Equals("NOTIFICATIONS"))
-               {
-                   Detail = new NotificationsPage();
-                   IsPresented = false;
-               }
         }
-    }
-}
+    } 
+
